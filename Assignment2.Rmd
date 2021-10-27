@@ -108,10 +108,10 @@ t_2 = 293/(exp(r/c_v*log(0.1)))
 ```
 
 First determine quantity of mols:
-$1~kg*\frac{mol}{.044~kg}~=$ `r mol_co2`
+$1~kg*\frac{mol}{.044~kg}~=$ `r mol_co2` mol
 
 Use ideal gas law equation: PV=nRT solved for Volume:
-$V=\frac{nRT}{P}~=~\frac{(2.27~mol)(8.314\frac{J}{mol~K})(293~K)}{101,325~\frac{N}{m^2}}~=~$ `r round(volume_co2,3)`
+$V=\frac{nRT}{P}~=~\frac{(2.27~mol)(8.314\frac{J}{mol~K})(293~K)}{101,325~\frac{N}{m^2}}~=~$ `r round(volume_co2,3)` $m^3$
 
 b)  To what temperature does the carbon dioxide heat up if it is
     adiabatically compressed to a tenth of its original volume?
@@ -128,7 +128,7 @@ A exterior house wall of 20 m2 area consists of a 2.5cm layer of wood and a 10cm
 
 ```{r}
 l_w <- .025 # m
-l_g <- .010 # m
+l_g <- .10 # m
 t_i <- 18 # C
 t_o <- -21 # C
 alpha_w <- .03 # cal/(s m C)
@@ -197,14 +197,30 @@ Efficiency is ratio of work to input:
 $\eta~=~\frac{W}{P_{in}}$ = `r round(boiler_effic,2)` = `r round(boiler_effic,2)*100` %
 
 Waste heat:
-Waste heat = $ (P_{in}*(1-\eta))*\frac{60~s}{1~min}$ = `r waste_per_min` MJ
+Waste heat = $(P_{in}*(1-\eta))*\frac{60~s}{1~min}$ = `r waste_per_min` MJ
 
 b) A fuel cell generates waste heat at 700 °F. A sterling engine utilizes this heat and exhausts its own waste heat into the atmosphere at 65 °F. What is the maximum efficiency (Carnot) that the sterling engine operating between these two temperatures could reach?
 ```{r}
-th = 700
-tc = 65
+th = 644.261
+tc = 291.483
 carnot = (th-tc)/th
 ```
 
 Plug into carnot efficiency eqn:
-$\eta~=~\frac{T_H~-~T_C}{T_H}~=~\frac{700C~-~65C}{700C}$ = `r round(carnot,2)`
+$\eta~=~\frac{T_H~-~T_C}{T_H}~=~\frac{644K~-~291K}{644K}$ = `r round(carnot,2)*100` %
+
+# Exercise 6
+```{r}
+eta_1 = 0.8
+eta_2 = 0.25
+eta_3 = 0.8
+
+eta_sum <-  eta_3 * (0.2*eta_1 + 0.8*eta_2)
+```
+
+Calculate the overall efficiency of the following system of energy conversion devices:
+
+$\eta = \frac{E_{in}}{E_{out}} = \eta_3*(0.2*\eta_1 + 0.8*\eta_2) =$ `r round(eta_sum,2)*100` %
+
+# Esercise 7
+First hydrolysis is not particularly efficient, ~0.7 according to the slides, and a fuel cell is also relatively inefficient, ~0.6 per slides, which will put this methodology at a disadvantage relative to a battery electric vehicle.
